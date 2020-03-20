@@ -38,7 +38,7 @@ spec:
       terminationGracePeriodSeconds: {{ .Values.statefulset.terminationGracePeriodSeconds }}
       {{- if .Values.image.pullSecret }}
       imagePullSecrets:
-        name: {{ .Values.image.pullSecret }}
+        - name: {{ .Values.image.pullSecret }}
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
