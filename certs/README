@@ -1,0 +1,5 @@
+Copy in this directory certificates and private keys for SSL configuration:
+
+1. godaddy.pem (CA certificate)
+2. amtech.key (private key in PEM format)
+3. godaddy.pem (certificate)
