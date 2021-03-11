@@ -12,7 +12,7 @@ WORKDIR /vernemq
 ENV DOCKER_VERNEMQ_KUBERNETES_LABEL_SELECTOR="app=vernemq" \
     DOCKER_VERNEMQ_LOG__CONSOLE=console \
     PATH="/vernemq/bin:$PATH" \
-    VERNEMQ_VERSION="1.10.4.1"
+    VERNEMQ_VERSION="1.11.0"
 
 ADD https://github.com/vernemq/vernemq/releases/download/$VERNEMQ_VERSION/vernemq-$VERNEMQ_VERSION.stretch.tar.gz /tmp
 
@@ -23,7 +23,8 @@ COPY --chown=10000:10000 certs/godaddy.pem /vernemq/etc/cacerts.pem
 COPY --chown=10000:10000 certs/amtech.pem /vernemq/etc/cert.pem
 COPY --chown=10000:10000 certs/amtech.key /vernemq/etc/key.pem
 
-RUN tar -xzvf /tmp/vernemq-$VERNEMQ_VERSION.stretch.tar.gz && \
+RUN curl -L https://github.com/vernemq/vernemq/releases/download/$VERNEMQ_VERSION/vernemq-$VERNEMQ_VERSION.stretch.tar.gz -o /tmp/vernemq-$VERNEMQ_VERSION.stretch.tar.gz && \
+    tar -xzvf /tmp/vernemq-$VERNEMQ_VERSION.stretch.tar.gz && \
     rm /tmp/vernemq-$VERNEMQ_VERSION.stretch.tar.gz && \
     chown -R 10000:10000 /vernemq && \
     ln -s /vernemq/etc /etc/vernemq && \

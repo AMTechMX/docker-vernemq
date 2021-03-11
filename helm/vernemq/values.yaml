@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: vernemq/vernemq
-  tag: 1.10.4.1-alpine
+  tag: 1.11.0-alpine
   pullPolicy: IfNotPresent
 
 nameOverride: ""
@@ -14,6 +14,7 @@ fullnameOverride: ""
 
 serviceMonitor:
   create: false
+  labels: {}
 
 service:
   # NodePort - Listen to a port on nodes and forward to the service.
@@ -24,6 +25,7 @@ service:
 #  externalIPs: []
 #  loadBalancerIP: 10.1.2.4
 #  loadBalancerSourceRanges: []
+#  externalTrafficPolicy: Local
 #  sessionAffinity: None
 #  sessionAffinityConfig: {}
   mqtt:

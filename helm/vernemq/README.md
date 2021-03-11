@@ -53,7 +53,7 @@ Parameter | Description | Default
 `additionalEnv` | additional environment variables | see [values.yaml](values.yaml)
 `image.pullPolicy` | container image pull policy | `IfNotPresent`
 `image.repository` | container image repository | `vernemq/vernemq`
-`image.tag` | container image tag | the current versions (e.g. `1.10.4.1`)
+`image.tag` | container image tag | the current versions (e.g. `1.11.0`)
 `ingress.enabled` | whether to enable an ingress object to route to the WebSocket service. Requires an ingress controller and the WebSocket service to be enabled. | `false`
 `ingress.labels` | additional ingress labels | `{}`
 `ingress.annotations` | additional service annotations | `{}`
@@ -82,6 +82,7 @@ Parameter | Description | Default
 `service.labels` | additional service labels | `{}`
 `service.loadBalancerIP` | optional load balancer IP when `service.type` is `LoadBalancer` | `none`
 `service.loadBalancerSourceRanges` | optional load balancer source ranges when `service.type` is `LoadBalancer` | `none`
+`service.externalTrafficPolicy` | set this to `Local` to preserve client source IPs and prevent additional hops between K8s nodes if the service type is `LoadBalancer` or `NodePort` | `unset`
 `service.sessionAffinity` | service session affinity | `none`
 `service.sessionAffinityConfig` | service session affinity config | `none`
 `service.mqtt.enabled` | whether to expose MQTT port | `true`
@@ -103,8 +104,9 @@ Parameter | Description | Default
 `statefulset.podManagementPolicy` | start and stop pods in Parallel or OrderedReady (one-by-one.)  **Note** - Cannot change after first release. | `OrderedReady`
 `statefulset.terminationGracePeriodSeconds` | configure how much time VerneMQ takes to move offline queues to other nodes | `60`
 `statefulset.updateStrategy` | Statefulset updateStrategy | `RollingUpdate`
-`statefulset.lifecycle | Statefulset lifecycle hooks | `{}`
-`serviceMonitor.enabled` | whether to create a ServiceMonitor for Prometheus Operator | `false`
+`statefulset.lifecycle` | Statefulset lifecycle hooks | `{}`
+`serviceMonitor.create` | whether to create a ServiceMonitor for Prometheus Operator | `false`
+`serviceMonitor.labels` | whether to add more labels to ServiceMonitor for Prometheus Operator | `{}`
 `pdb.enabled` | whether to create a Pod Disruption Budget | `false`
 `pdb.minAvailable` | PDB (min available) for the cluster | `1`
 `pdb.maxUnavailable` | PDB (max unavailable) for the cluster | `nil`
