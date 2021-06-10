@@ -19,9 +19,6 @@ ADD https://github.com/vernemq/vernemq/releases/download/$VERNEMQ_VERSION/vernem
 COPY --chown=10000:10000 bin/vernemq.sh /usr/sbin/start_vernemq
 COPY --chown=10000:10000 files/vm.args /vernemq/etc/vm.args
 COPY --chown=10000:10000 amtech_customization/redis.lua /vernemq/share/lua/redis.lua
-COPY --chown=10000:10000 certs/godaddy.pem /vernemq/etc/cacerts.pem
-COPY --chown=10000:10000 certs/amtech.pem /vernemq/etc/cert.pem
-COPY --chown=10000:10000 certs/amtech.key /vernemq/etc/key.pem
 
 RUN curl -L https://github.com/vernemq/vernemq/releases/download/$VERNEMQ_VERSION/vernemq-$VERNEMQ_VERSION.stretch.tar.gz -o /tmp/vernemq-$VERNEMQ_VERSION.stretch.tar.gz && \
     tar -xzvf /tmp/vernemq-$VERNEMQ_VERSION.stretch.tar.gz && \
